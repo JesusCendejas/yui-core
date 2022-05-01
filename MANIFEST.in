@@ -1,0 +1,6 @@
+recursive-include yui/client/speech/recognizer/model *
+include requirements/requirements.txt
+include yui/configuration/*.conf
+recursive-include yui/res *
+recursive-include yui/res/snd *
+recursive-include yui/res/text/* *

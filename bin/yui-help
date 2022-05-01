@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Copyright 2018 Yui AI Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+SOURCE="${BASH_SOURCE[0]}"
+cd -P "$( dirname "$SOURCE" )"/.. || exit
+DIR="$( pwd )"
+
+echo -e "\\e[36myui\\e[0m is your open source voice assistant.  Full source"
+echo "can be found at: ${DIR}"
+echo
+echo "Yui-specific commands you can use from the Linux command prompt:"
+echo "  yui-cli-client       Command line client, useful for debugging"
+echo "  yui-msm              Yui Skills Manager, to manage your Skills"
+echo "  yui-start            Launch/restart Yui services"
+echo "  yui-stop             Stop Yui services"
+echo
+echo "Scripting Utilities:"
+echo "  yui-listen           Activate the microphone to listen for a command"
+echo "  yui-speak <phr>      Have Yui speak a phrase to the user"
+echo "  yui-say-to <utt>     Send an utterance to Yui as if spoken by a user"
+echo
+echo "Yui's Python Virtual Environment (venv) control:"
+echo "  yui-pip              Install a Python package within the venv"
+echo "  yui-venv-activate    Enter the venv"
+echo "  yui-venv-deactivate  Exit the venv"
+echo
+echo "Skill Development:"
+echo "  yui-msk              Yui Skills Kit, create and share Skills"
+echo "  yui-skill-testrunner Run integration tests on Yui Skills"
+echo
+echo "Other:"
+echo "  yui-config           Manage your local Yui configuration files"
+echo "  yui-mic-test         Record and playback to directly test microphone"
+echo "  yui-help             Display this message"
+echo
+echo "For more information, see https://yui.ai/documentation"
