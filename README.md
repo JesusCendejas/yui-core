@@ -1,154 +1,305 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE.md) 
-[![CLA](https://img.shields.io/badge/CLA%3F-Required-blue.svg)](https://mycroft
 ![Unit Tests](https://github.com/mycroftai/mycroft-core/workflows/Unit%20Tests/badge.svg)
 [![codecov](https://codecov.io/gh/MycroftAI/mycroft-core/branch/dev/graph/badge.svg?token=zQzRlkXxAr)](https://codecov.io/gh/MycroftAI/mycroft-core)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Join chat](https://img.shields.io/badge/Mattermost-join_chat-brightgreen.svg)](https://chat.mycroft.ai)
 
 # Yui
 
-Yui is a hackable open source voice assistant.
+Yui is a open source voice assistant.
 
-## Table of Contents
+-[English](#English-README)
+-[Spanish](#Spanish-README)
 
-- [Getting Started](#getting-started)
-- [Running Yui](#running-yui)
-- [Using Yui](#using-yui)
-  * [*Home* Device and Account Manager](#home-device-and-account-manager)
-  * [Skills](#skills)
-- [Behind the scenes](#behind-the-scenes)
-  * [Pairing Information](#pairing-information)
-  * [Configuration](#configuration)
-  * [Using Yui Without Home](#using-yui-without-home)
-  * [API Key Services](#api-key-services)
-  * [Using Yui behind a proxy](#using-yui-behind-a-proxy)
-    + [Using Yui behind a proxy without authentication](#using-yui-behind-a-proxy-without-authentication)
-    + [Using Yui behind an authenticated proxy](#using-yui-behind-an-authenticated-proxy)
-- [Getting Involved](#getting-involved)
-- [Links](#links)
+## English-README
+  ## Table of Contents
 
-## Getting Started
+  - [Getting Started](#getting-started)
+  - [Running Yui](#running-yui)
+  - [Using Yui](#using-yui)
+    * [*Home* Device and Account Manager](#home-device-and-account-manager)
+    * [Skills](#skills)
+  - [Behind the scenes](#behind-the-scenes)
+    * [Pairing Information](#pairing-information)
+    * [Configuration](#configuration)
+    * [Using Yui Without Home](#using-yui-without-home)
+    * [API Key Services](#api-key-services)
+    * [Using Yui behind a proxy](#using-yui-behind-a-proxy)
+      + [Using Yui behind a proxy without authentication](#using-yui-behind-a-proxy-without-authentication)
+      + [Using Yui behind an authenticated proxy](#using-yui-behind-an-authenticated-proxy)
+  - [Getting Involved](#getting-involved)
+  - [Links](#links)
 
-First, get the code on your system!  The simplest method is via git ([git installation instructions](https://gist.github.com/derhuerst/1b15ff4652a867391f03)):
-- `cd ~/`
-- `git clone https://github.com/MycroftAI/yui-core.git`
-- `cd yui-core`
-- `bash dev_setup.sh`
+  ## Getting Started
+
+  First, get the code on your system!  The simplest method is via git ([git installation instructions](https://gist.github.com/derhuerst/1b15ff4652a867391f03)):
+  - `cd ~/`
+  - `git clone https://github.com/JesusCendejas/Yui_assistant.git`
+  - `cd yui-core`
+  - `bash dev_setup.sh`
 
 
-This script sets up dependencies and a [virtualenv][about-virtualenv].  If running in an environment besides Ubuntu/Debian, Arch or Fedora you may need to manually install packages as instructed by dev_setup.sh.
+  This script sets up dependencies and a [virtualenv][about-virtualenv].  If running in an environment besides Ubuntu/Debian, Arch or Fedora you may need to manually install packages as instructed by dev_setup.sh.
 
-[about-virtualenv]:https://virtualenv.pypa.io/en/stable/
+  [about-virtualenv]:https://virtualenv.pypa.io/en/stable/
 
-NOTE: The default branch for this repository is 'dev', which should be considered a work-in-progress. If you want to clone a more stable version, switch over to the 'master' branch.
+  NOTE: The default branch for this repository is 'dev', which should be considered a work-in-progress. If you want to clone a more stable version, switch over to the 'master' branch.
 
-## Running Yui
+  ## Running Yui
 
-Yui provides `start-yui.sh` to perform common tasks. This script uses a virtualenv created by `dev_setup.sh`.  Assuming you installed yui-core in your home directory run:
-- `cd ~/yui-core`
-- `./start-yui.sh debug`
+  Yui provides `start-yui.sh` to perform common tasks. This script uses a virtualenv created by `dev_setup.sh`.  Assuming you installed yui-core in your home directory run:
+  - `cd ~/yui-core`
+  - `./start-yui.sh debug`
 
-The "debug" command will start the background services (microphone listener, skill, messagebus, and audio subsystems) as well as bringing up a text-based Command Line Interface (CLI) you can use to interact with Yui and see the contents of the various logs. Alternatively you can run `./start-yui.sh all` to begin the services without the command line interface.  Later you can bring up the CLI using `./start-yui.sh cli`.
+  The "debug" command will start the background services (microphone listener, skill, messagebus, and audio subsystems) as well as bringing up a text-based Command Line Interface (CLI) you can use to interact with Yui and see the contents of the various logs. Alternatively you can run `./start-yui.sh all` to begin the services without the command line interface.  Later you can bring up the CLI using `./start-yui.sh cli`.
 
-The background services can be stopped as a group with:
-- `./stop-yui.sh`
+  The background services can be stopped as a group with:
+  - `./stop-yui.sh`
 
-## Using Yui
+  ## Using Yui
 
-### *Home* Device and Account Manager
-Yui AI, Inc. maintains a device and account management system known as Yui Home. Developers may sign up at: https://home.mycroft.ai
+  ### *Home* Device and Account Manager
+  Yui AI, Inc. maintains a device and account management system known as Yui Home. Developers may sign up at: https://home.mycroft.ai
 
-By default, yui-core  is configured to use Home. By saying "Hey Yui, pair my device" (or any other request verbal request) you will be informed that your device needs to be paired. Yui will speak a 6-digit code which you can enter into the pairing page within the [Yui Home site](https://home.mycroft.ai).
+  By default, yui-core  is configured to use Home. By saying "Hey Yui, pair my device" (or any other request verbal request) you will be informed that your device needs to be paired. Yui will speak a 6-digit code which you can enter into the pairing page within the [Yui Home site](https://home.mycroft.ai).
 
-Once paired, your unit will use Yui API keys for services such as Speech-to-Text (STT), weather and various other skills.
+  Once paired, your unit will use Yui API keys for services such as Speech-to-Text (STT), weather and various other skills.
 
-### Skills
+  ### Skills
 
-Yui is nothing without skills.  There are a handful of default skills that are downloaded automatically to your `/opt/yui/skills` directory, but most need to be installed explicitly.  See the [Skill Repo](https://github.com/MycroftAI/mycroft-skills#welcome) to discover skills made by others.  Please share your own interesting work!
+  Yui is nothing without skills.  There are a handful of default skills that are downloaded automatically to your `/opt/yui/skills` directory, but most need to be installed explicitly.  See the [Skill Repo](https://github.com/MycroftAI/mycroft-skills#welcome) to discover skills made by others.  Please share your own interesting work!
 
-## Behind the scenes
+  ## Behind the scenes
 
-### Pairing Information
-Pairing information generated by registering with Home is stored in:
-`~/.config/yui/identity/identity2.json` <b><-- DO NOT SHARE THIS WITH OTHERS!</b>
+  ### Pairing Information
+  Pairing information generated by registering with Home is stored in:
+  `~/.config/yui/identity/identity2.json` <b><-- DO NOT SHARE THIS WITH OTHERS!</b>
 
-### Configuration
-Yui's configuration consists of 4 possible locations:
-- `yui-core/yui/configuration/yui.conf`(Defaults)
-- [Yui Home](https://home.mycroft.ai) (Remote)
-- `/etc/yui/yui.conf` (Machine)
-- `$XDG_CONFIG_DIR/yui/yui.conf` (which is by default `$HOME/.config/yui/yui.conf`) (USER)
+  ### Configuration
+  Yui's configuration consists of 4 possible locations:
+  - `yui-core/yui/configuration/yui.conf`(Defaults)
+  - [Yui Home](https://home.mycroft.ai) (Remote)
+  - `/etc/yui/yui.conf` (Machine)
+  - `$XDG_CONFIG_DIR/yui/yui.conf` (which is by default `$HOME/.config/yui/yui.conf`) (USER)
 
-When the configuration loader starts, it looks in these locations in this order, and loads ALL configurations. Keys that exist in multiple configuration files will be overridden by the last file to contain the value. This process results in a minimal amount being written for a specific device and user, without modifying default distribution files.
+  When the configuration loader starts, it looks in these locations in this order, and loads ALL configurations. Keys that exist in multiple configuration files will be overridden by the last file to contain the value. This process results in a minimal amount being written for a specific device and user, without modifying default distribution files.
 
-### Using Yui Without Home
+  ### Using Yui Without Home
 
-If you do not wish to use the Mycroft Home service, before starting Yui for the first time, create `$HOME/.config/yui/yui.conf` with the following contents:
+  If you do not wish to use the Mycroft Home service, before starting Yui for the first time, create `$HOME/.config/yui/yui.conf` with the following contents:
 
-```
-{
-  "skills": {
-    "blacklisted_skills": [
+  ```
+  {
+    "skills": {
+      "blacklisted_skills": [
       "yui-configuration.mycroftai",
       "yui-pairing.mycroftai"
-    ]
+      ]
+    }
   }
-}
-```
+  ```
 
-### API Key Services
+  ### API Key Services
 
-The Yui backend provides access to a range of API keys for specific services. Without pairing with the Yui backend, you will need to add your own API keys, install a different Skill or Plugin to perform that function, or not have access to that functionality.
+  The Yui backend provides access to a range of API keys for specific services. Without pairing with the Yui backend, you will need to add your own API keys, install a different Skill or Plugin to perform that function, or not have access to that functionality.
 
-These are the keys currently used in Yui Core through the Yui backend:
+  These are the keys currently used in Yui Core through the Yui backend:
 
-- [STT API, Google STT, Google Cloud Speech](http://www.chromium.org/developers/how-tos/api-keys)
+  - [STT API, Google STT, Google Cloud Speech](http://www.chromium.org/developers/how-tos/api-keys)
   - [A range of STT services](https://yui-ai.gitbook.io/docs/using-mycroft-ai/customizations/stt-engine) are available for use with Yui.
-- [Weather Skill API, OpenWeatherMap](http://openweathermap.org/api)
-- [Wolfram-Alpha Skill](http://products.wolframalpha.com/api/)
+  - [Weather Skill API, OpenWeatherMap](http://openweathermap.org/api)
+  - [Wolfram-Alpha Skill](http://products.wolframalpha.com/api/)
 
 
-### Using Yui behind a proxy
+  ### Using Yui behind a proxy
 
-Many schools, universities and workplaces run a `proxy` on their network. If you need to type in a username and password to access the external internet, then you are likely behind a `proxy`.
+  Many schools, universities and workplaces run a `proxy` on their network. If you need to type in a username and password to access the external internet, then you are likely behind a `proxy`.
 
-If you plan to use Yui behind a proxy, then you will need to do an additional configuration step.
+  If you plan to use Yui behind a proxy, then you will need to do an additional configuration step.
 
-_NOTE: In order to complete this step, you will need to know the `hostname` and `port` for the proxy server. Your network administrator will be able to provide these details. Your network administrator may want information on what type of traffic Yui will be using. We use `https` traffic on port `443`, primarily for accessing ReST-based APIs._
+  _NOTE: In order to complete this step, you will need to know the `hostname` and `port` for the proxy server. Your network administrator will be able to provide these details. Your network administrator may want information on what type of traffic Yui will be using. We use `https` traffic on port `443`, primarily for accessing ReST-based APIs._
 
-#### Using Yui behind a proxy without authentication
+  #### Using Yui behind a proxy without authentication
 
-If you are using Yui behind a proxy without authentication, add the following environment variables, changing the `proxy_hostname.com` and `proxy_port` for the values for your network. These commands are executed from the Linux command line interface (CLI).
+  If you are using Yui behind a proxy without authentication, add the following environment variables, changing the `proxy_hostname.com` and `proxy_port` for the values for your network. These commands are executed from the Linux command line interface (CLI).
 
-```bash
-$ export http_proxy=http://proxy_hostname.com:proxy_port
-$ export https_port=http://proxy_hostname.com:proxy_port
-$ export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,0.0.0.0,::1"
-```
+  ```bash
+  $ export http_proxy=http://proxy_hostname.com:proxy_port
+  $ export https_port=http://proxy_hostname.com:proxy_port
+  $ export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,0.0.0.0,::1"
+  ```
 
-#### Using Yui behind an authenticated proxy
+  #### Using Yui behind an authenticated proxy
 
-If  you are behind a proxy which requires authentication, add the following environment variables, changing the `proxy_hostname.com` and `proxy_port` for the values for your network. These commands are executed from the Linux command line interface (CLI).
+  If  you are behind a proxy which requires authentication, add the following environment variables, changing the `proxy_hostname.com` and `proxy_port` for the values for your network. These commands are executed from the Linux command line interface (CLI).
 
-```bash
-$ export http_proxy=http://user:password@proxy_hostname.com:proxy_port
-$ export https_port=http://user:password@proxy_hostname.com:proxy_port
-$ export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,0.0.0.0,::1"
-```
+  ```bash
+  $ export http_proxy=http://user:password@proxy_hostname.com:proxy_port
+  $ export https_port=http://user:password@proxy_hostname.com:proxy_port
+  $ export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,0.0.0.0,::1"
+  ```
 
-## Getting Involved
+  ## Getting Involved
 
-This is an open source project. We would love your help. We have prepared a [contributing](.github/CONTRIBUTING.md) guide to help you get started.
+  This is an open source project. We would love your help. We have prepared a [contributing](.github/CONTRIBUTING.md) guide to help you get started.
 
-If this is your first PR, or you're not sure where to get started,
-say hi in [Mycroft Chat](https://chat.mycroft.ai/) and a team member would be happy to mentor you.
-Join the [Mycroft Forum](https://community.mycroft.ai/) for questions and answers.
+  If this is your first PR, or you're not sure where to get started,
+  say hi in [Mycroft Chat](https://chat.mycroft.ai/) and a team member would be happy to mentor you.
+  Join the [Mycroft Forum](https://community.mycroft.ai/) for questions and answers.
 
-## Links
-* [Creating a Skill](https://mycroft-ai.gitbook.io/docs/skill-development/your-first-skill)
-* [Documentation](https://docs.mycroft.ai)
-* [Skill Writer API Docs](https://mycroft-core.readthedocs.io/en/master/)
-* [Release Notes](https://github.com/MycroftAI/mycroft-core/releases)
-* [Mycroft Chat](https://chat.mycroft.ai)
-* [Mycroft Forum](https://community.mycroft.ai)
-* [Mycroft Blog](https://mycroft.ai/blog)
+  ## Links
+  * [Creating a Skill](https://mycroft-ai.gitbook.io/docs/skill-development/your-first-skill)
+  * [Documentation](https://docs.mycroft.ai)
+  * [Skill Writer API Docs](https://mycroft-core.readthedocs.io/en/master/)
+  * [Release Notes](https://github.com/MycroftAI/mycroft-core/releases)
+  * [Mycroft Chat](https://chat.mycroft.ai)
+  * [Mycroft Forum](https://community.mycroft.ai)
+  * [Mycroft Blog](https://mycroft.ai/blog)
+
+
+
+##Spanish-README
+  ## Tabla de contenidos
+
+  - [Iniciando](#Iniciando)
+  - [Corriendo Yui](#corriendo-yui)
+  - [Usando Yui](#using-yui)
+    * [*Home* Administrador de cuentas y dispositivos domesticos](#administrador-de-cuentas-y-dispositivos-domesticos)
+    * [Skills](#skills)
+  - [Behind the scenes](#behind-the-scenes)
+    * [Informacion de emparejamiento](#informacion-de-emparejamiento)
+    * [Configuracion](#configuracion)
+    * [Usar Yui sin servidores Mycroft](#usar-Yui-sin-servidores-Mycroft)
+    * [API Key Services](#api-key-services)
+    * [Usar Yui con un proxy](#usar-Yui-con-un-proxy)
+      + [Usar Yui detrás de un proxy sin autenticacion](#usar-Yui-detras-de-un-proxy-sin-autenticacion)
+      + [Usar Yui detrás de un proxy autenticado](#usar-Yui-detras-de-un-proxy-con-autenticacion)
+  - [Involucrarse](#involucrarse)
+  - [Links](#links)
+
+  ## Iniciando
+
+  Primero, obtener el codigo en tu sistema!  El metodo mas simple es mediante git ([instrucciones de instalacion git](https://gist.github.com/derhuerst/1b15ff4652a867391f03)):
+
+  - `cd ~/`
+  - `sudo git clone https://github.com/JesusCendejas/Yui_assistant.git`
+  - `cd yui-core`
+  - `./dev_setup.sh --allow-root`
+
+
+  Este script configura las dependencias y un [virtualenv][about-virtualenv].  Si se ejecuta en un entorno además de Ubuntu o Arch es posible que deba instalar paquetes manualmente según las instrucciones de dev_setup.sh.
+
+  [about-virtualenv]:https://virtualenv.pypa.io/en/stable/
+
+  NOTA: La rama predeterminada para este repositorio es 'dev', que debe considerarse un trabajo-en-progreso. Si desea clonar una versión más estable, cambie a la rama 'master'
+
+  ## Running Yui
+
+  Yui proporciona `start-yui.sh` para realizar tareas comunes. Este script usa un entorno virtual creado por `dev_setup.sh`. Asumiendo que estudio yui-core en su directorio de inicio corra:
+  - `cd ~/yui-core`
+  - `./start-yui.sh debug`
+
+  El comando "debug" iniciara los servicios backgrounds (microphone listener, skill, messagebus, and audio subsystems) ademas de abrir una interfaz de linea de comandos basada en texto (CLI) puedes usarla para interactuar con Yui y ver el contenido de los distintos registros. Alternativamente puedes ejecutar `./start-yui.sh all` para iniciar los servicios sin la interfaz de comandos. Mas tarde, puede abrir la CLI usando `./start-yui.sh cli`.
+
+  Los servicios background pueden detenerce con:
+  - `./stop-yui.sh`
+
+  ## Usando Yui
+
+  ### *Home* Administrador de cuentas y dispocitivos 
+  Yui AI, antiene un sistema de administración de dispositivos y cuentas conocido como Yui Home. Los desarrolladores pueden registrarse en: https://home.mycroft.ai
+
+  Por default, yui-core esta configurado para usar el servidor. diciendo "Hey Yui, empareja mi dispositivo" (o cualquier otra solicitud verbal) se le informara que su dispositivo necesitara emparejarse. Yui dira un codigo de 6 digitos con el que podras dar de alta tu dispositivo en: [Yui Home site](https://home.mycroft.ai).
+
+  Once paired, your unit will use Yui API keys for services such as Speech-to-Text (STT), weather and various other skills.
+
+  ### Skills
+
+  Yui is nothing without skills.  There are a handful of default skills that are downloaded automatically to your `/opt/yui/skills` directory, but most need to be installed explicitly.  See the [Skill Repo](https://github.com/MycroftAI/mycroft-skills#welcome) to discover skills made by others.  Please share your own interesting work!
+
+  ## Behind the scenes
+
+  ### Pairing Information
+  Pairing information generated by registering with Home is stored in:
+  `~/.config/yui/identity/identity2.json` <b><-- DO NOT SHARE THIS WITH OTHERS!</b>
+
+  ### Configuration
+  Yui's configuration consists of 4 possible locations:
+  - `yui-core/yui/configuration/yui.conf`(Defaults)
+  - [Yui Home](https://home.mycroft.ai) (Remote)
+  - `/etc/yui/yui.conf` (Machine)
+  - `$XDG_CONFIG_DIR/yui/yui.conf` (which is by default `$HOME/.config/yui/yui.conf`) (USER)
+
+  When the configuration loader starts, it looks in these locations in this order, and loads ALL configurations. Keys that exist in multiple configuration files will be overridden by the last file to contain the value. This process results in a minimal amount being written for a specific device and user, without modifying default distribution files.
+
+  ### Using Yui Without Home
+
+  If you do not wish to use the Mycroft Home service, before starting Yui for the first time, create `$HOME/.config/yui/yui.conf` with the following contents:
+
+  ```
+  {
+    "skills": {
+      "blacklisted_skills": [
+      "yui-configuration.mycroftai",
+      "yui-pairing.mycroftai"
+      ]
+    }
+  }
+  ```
+
+  ### API Key Services
+
+  The Yui backend provides access to a range of API keys for specific services. Without pairing with the Yui backend, you will need to add your own API keys, install a different Skill or Plugin to perform that function, or not have access to that functionality.
+
+  These are the keys currently used in Yui Core through the Yui backend:
+
+  - [STT API, Google STT, Google Cloud Speech](http://www.chromium.org/developers/how-tos/api-keys)
+  - [A range of STT services](https://yui-ai.gitbook.io/docs/using-mycroft-ai/customizations/stt-engine) are available for use with Yui.
+  - [Weather Skill API, OpenWeatherMap](http://openweathermap.org/api)
+  - [Wolfram-Alpha Skill](http://products.wolframalpha.com/api/)
+
+
+  ### Using Yui behind a proxy
+
+  Many schools, universities and workplaces run a `proxy` on their network. If you need to type in a username and password to access the external internet, then you are likely behind a `proxy`.
+
+  If you plan to use Yui behind a proxy, then you will need to do an additional configuration step.
+
+  _NOTE: In order to complete this step, you will need to know the `hostname` and `port` for the proxy server. Your network administrator will be able to provide these details. Your network administrator may want information on what type of traffic Yui will be using. We use `https` traffic on port `443`, primarily for accessing ReST-based APIs._
+
+  #### Using Yui behind a proxy without authentication
+
+  If you are using Yui behind a proxy without authentication, add the following environment variables, changing the `proxy_hostname.com` and `proxy_port` for the values for your network. These commands are executed from the Linux command line interface (CLI).
+
+  ```bash
+  $ export http_proxy=http://proxy_hostname.com:proxy_port
+  $ export https_port=http://proxy_hostname.com:proxy_port
+  $ export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,0.0.0.0,::1"
+  ```
+
+  #### Using Yui behind an authenticated proxy
+
+  If  you are behind a proxy which requires authentication, add the following environment variables, changing the `proxy_hostname.com` and `proxy_port` for the values for your network. These commands are executed from the Linux command line interface (CLI).
+
+  ```bash
+  $ export http_proxy=http://user:password@proxy_hostname.com:proxy_port
+  $ export https_port=http://user:password@proxy_hostname.com:proxy_port
+  $ export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,0.0.0.0,::1"
+  ```
+
+  ## Getting Involved
+
+  This is an open source project. We would love your help. We have prepared a [contributing](.github/CONTRIBUTING.md) guide to help you get started.
+
+  If this is your first PR, or you're not sure where to get started,
+  say hi in [Mycroft Chat](https://chat.mycroft.ai/) and a team member would be happy to mentor you.
+  Join the [Mycroft Forum](https://community.mycroft.ai/) for questions and answers.
+
+  ## Links
+  * [Creating a Skill](https://mycroft-ai.gitbook.io/docs/skill-development/your-first-skill)
+  * [Documentation](https://docs.mycroft.ai)
+  * [Skill Writer API Docs](https://mycroft-core.readthedocs.io/en/master/)
+  * [Release Notes](https://github.com/MycroftAI/mycroft-core/releases)
+  * [Mycroft Chat](https://chat.mycroft.ai)
+  * [Mycroft Forum](https://community.mycroft.ai)
+  * [Mycroft Blog](https://mycroft.ai/blog)
+
