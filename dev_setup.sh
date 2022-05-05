@@ -17,7 +17,7 @@
 
 # Set a default locale to handle output from commands reliably
 export LANG=C.UTF-8
-export LANGUAGE=es
+export LANGUAGE=en
 
 # exit on any error
 set -Ee
@@ -25,7 +25,7 @@ set -Ee
 cd $(dirname $0)
 TOP=$(pwd -L)
 
-function clean_mycroft_files() {
+function clean_yui_files() {
     echo '
 This will completely remove any files installed by yui (including pairing
 information).
@@ -52,7 +52,7 @@ Do you wish to continue? (y/n)'
 function show_help() {
     echo '
 Usage: dev_setup.sh [options]
-Prepare your environment for running the yui-core services.
+Prepare your environment for running the mycrost-core services.
 
 Options:
     --clean                 Remove files and folders created by this script
@@ -88,7 +88,7 @@ for var in "$@" ; do
     fi
 
     if [[ $var == '--clean' ]] ; then
-        if clean_mycroft_files; then
+        if clean_yui_files; then
             exit 0
         else
             exit 1
